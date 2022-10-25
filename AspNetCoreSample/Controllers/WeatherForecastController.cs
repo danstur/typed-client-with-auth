@@ -11,10 +11,10 @@ namespace AspNetCoreSample.Controllers
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
     };
 
-        private readonly CustomHttpClient _customHttpClient;
+        private readonly ICustomHttpClient _customHttpClient;
         private readonly ILogger<WeatherForecastController> _logger;
 
-        public WeatherForecastController(CustomHttpClient customHttpClient, ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ICustomHttpClient customHttpClient, ILogger<WeatherForecastController> logger)
         {
             _customHttpClient = customHttpClient;
             _logger = logger;

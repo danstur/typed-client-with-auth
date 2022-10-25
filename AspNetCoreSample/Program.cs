@@ -7,7 +7,12 @@ namespace AspNetCoreSample
         public Task<string> GetAuthentication() => Task.FromResult("Hello World");
     }
 
-    public sealed class CustomHttpClient
+    public interface ICustomHttpClient
+    {
+        Task<string> GetAsync();
+    }
+
+    public sealed class CustomHttpClient : ICustomHttpClient
     {
         private readonly HttpClient _client;
         private readonly MyTheoreticalRepository _repo;
@@ -40,7 +45,7 @@ namespace AspNetCoreSample
             services.AddControllers();
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
-            services.AddHttpClient<CustomHttpClient>();
+            services.AddHttpClient<ICustomHttpClient, CustomHttpClient>();
             services.AddTransient<MyTheoreticalRepository>();
         }
 
